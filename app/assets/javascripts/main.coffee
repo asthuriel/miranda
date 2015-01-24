@@ -31,12 +31,12 @@ $(()->
     placeholder: true
   )
 
-  if $('.js-select2').length
+  ###if $('.js-select2').length
     $('.js-select2').select2(
       placeholder: "Add some friends here!"
       minimumInputLength: 1
       formatInputTooShort: () ->
         return ''
     )
-    $('.js-select2').removeClass('hidden')
+    $('.js-select2').removeClass('hidden')###
 )

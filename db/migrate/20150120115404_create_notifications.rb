@@ -10,7 +10,7 @@ class CreateNotifications < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    add_foreign_key :notifications, :users, column: :recipient, primary_key: :id
-    add_foreign_key :notifications, :users, column: :sender, primary_key: :id
+    add_foreign_key :notifications, :users, column: :recipient_id, primary_key: :id
+    add_foreign_key :notifications, :users, column: :sender_id, primary_key: :id
   end
 end
