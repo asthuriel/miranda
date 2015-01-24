@@ -1,0 +1,91 @@
+.container{
+  max-width: $content-max;
+  min-width: $content-min;
+  position: relative;
+  margin: 0 auto;
+}
+
+.container--nav{
+  max-width: $content-max; // $nav-max;
+}
+
+.content{
+  margin: 0 auto;
+  padding-top: $nav-height + $subnav-height;
+  max-width: $content-max;
+  min-width: $content-min;
+  border: 1px solid $color-border;
+  border-top: none;
+  background-color: $color-content-bgnd;
+
+  //border-top: none;
+
+  @media #{$less-than-content-max}{
+    border-left: none;
+    border-right: none;
+  }
+}
+
+.content--landing{
+  background-color: transparent;
+  border: none;
+}
+
+.content--nosub{
+  padding-top: $nav-height;
+}
+
+.content--padded{
+  padding-left: $standard-padding;
+  padding-right: $standard-padding;
+}
+
+.content--top{
+  padding-top: 0;
+}
+
+.content--actionable{
+  margin-bottom: $action-height;
+}
+
+.content--full{
+  height: 100%;
+  padding-top: 0;
+  border-top: none;
+  border-bottom: none;
+  position: relative;
+  z-index: 1;
+
+  //max-height: 600px;
+}
+
+.box{
+  padding: $standard-padding;
+}
+
+.content__panel{
+  padding: $standard-padding*1.5 $standard-padding;
+  border-bottom: 1px solid $color-border;
+}
+
+.content__title{
+  @extend .beta;
+  font-weight: $font-weight-light;
+  color: $color-title-primary;
+  margin-bottom: $standard-padding;
+}
+
+.hero{
+  text-align: center;
+  padding: $standard-padding*1.5 0;
+}
+
+.profile{
+  text-align: center;
+  border-bottom: 1px solid $color-border;
+}
+
+.profile__content{
+  padding: 0 $standard-padding $standard-padding*1.5 $standard-padding;
+}
+

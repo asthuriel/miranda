@@ -1,0 +1,138 @@
+$header-left-margin: 72px;
+$header-right-margin: 40px;
+
+.list{
+}
+
+.list-item__left-float,
+.list-item__left-block,
+.list-item__right-float,
+.list-item__right-block,
+.list-item__header,
+.list-item__content,
+.list-item__footer,
+.list-item__well{
+  padding: $standard-padding-v $standard-padding;
+}
+
+.list-item__left-float,
+.list-item__left-block,
+.list-item__right-float,
+.list-item__right-block{
+  padding-bottom: 0;
+}
+
+.list-item__content{
+  padding-top: 0;
+}
+
+.list-item__footer{
+  padding-top: 0;
+}
+
+.list-item__well{
+  margin-bottom: $standard-padding-v/2;
+}
+
+.list--border-top{
+  border-top: 1px solid $color-border;
+}
+
+.list-item{
+  clear: both;
+  overflow: hidden;
+  position: relative;
+  background-color: $color-content-bgnd;
+  // min-height: 68px; //REFACTOR;
+  p{
+    min-height: 0.6em;
+  }
+  &:last-child{
+    .list-item__header--bordered{
+      border-bottom: none;
+    }
+  }
+}
+
+.list-item--alternate{
+  background-color: $color-grey-lightest; //REFACTOR!!
+}
+
+.list-item--hoverable{
+  cursor: pointer;
+  &:hover{
+    background-color: white;
+  }
+}
+
+.list-item--bordered{
+  border-bottom: 1px solid $color-border;
+  &:last-child{
+    border-bottom: none;
+  }
+}
+
+.list-item__left-float{
+  float: left;
+}
+
+.list-item__left-block{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.list-item__right-float{
+  float: right;
+}
+
+.list-item__right-block{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.list-item__header{
+  padding-left: 0;
+  margin-left: $header-left-margin;
+  /*padding-right: 0;
+  margin-right: $standard-padding;*/
+}
+
+.list-item_block--short{
+  padding-bottom: $standard-padding-v/1.5;
+}
+
+.list-item__header--alternate{
+  margin-right: $header-right-margin;
+  margin-right: 30px;
+}
+
+.list-item__header--long-left{
+  margin-left: 116px;
+}
+
+.list-item__header--bordered{
+  border-bottom: 1px solid $color-border;
+}
+
+.list-item__content{
+  clear: both;
+}
+
+.list-item__footer{
+  padding-bottom: $standard-padding-v/1.3;
+}
+
+.list-item__well{
+  background-color: $color-comment-bgnd;
+  border: 1px solid $color-border;
+  border-left: none;
+  border-right: none;
+}
+
+
+
+
+
+

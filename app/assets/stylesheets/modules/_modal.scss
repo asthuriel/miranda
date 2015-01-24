@@ -1,0 +1,88 @@
+.modal{
+  @include box-shadow($z-modal);
+  background-color: white;
+  padding: 0;
+  max-width: 550px;
+  margin: 10px auto;
+  position: relative;
+}
+
+.modal__title{
+  @extend .gamma;
+  background-color: $color-primary;
+  color: $color-title-secondary;
+  padding: $standard-padding-v $standard-padding ;
+}
+
+.modal__body{
+  padding: $standard-padding ;
+}
+
+.modal__body--full{
+  padding: 0;
+}
+
+// ====== Magnific Popup Overrrides ======
+
+.mfp-content{
+  .modal{
+    margin: $standard-padding auto;
+  }
+}
+
+.mfp-container{
+  min-width: 300px;
+  padding: 0 $standard-padding;
+}
+
+.mfp-close{
+  opacity: 0.8;
+  // text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+  top: 3px;
+  right: 3px;
+  font-size: 36px;
+  font-family: $font-family-default;
+  font-weight: $font-weight-light;
+}
+
+.mfp-close-btn-in .mfp-close{
+  color: white;
+}
+
+// ====== Zoom effect ======
+
+.mfp-zoom-in {
+  /* start state */
+  .mfp-content {
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+    transform: scale(0.8);
+  }
+
+  &.mfp-bg {
+    opacity: 0;
+    transition: all 0.3s ease-out;
+  }
+
+  /* animate in */
+  &.mfp-ready {
+    .mfp-content {
+      opacity: 1;
+      transform: scale(1);
+    }
+    &.mfp-bg {
+      opacity: 0.8;
+    }
+  }
+
+  /* animate out */
+  &.mfp-removing {
+    .mfp-content {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    &.mfp-bg {
+      opacity: 0;
+    }
+  }
+}

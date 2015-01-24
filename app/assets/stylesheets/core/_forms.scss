@@ -1,0 +1,288 @@
+input[type="text"]{
+}
+
+input, textarea, select{
+  font-family: $font-family-default;
+  font-weight: $font-weight-normal;
+  font-size: $font-size-base;
+  -webkit-font-smoothing: antialiased;
+  color: $color-text-primary;
+}
+
+input[type="submit"]{
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+}
+
+label{
+  @extend .zeta;
+  color: $color-text-secondary;
+}
+
+.btn{
+  @extend .element-hoverable;
+  font-weight: $font-weight-medium;
+  display: inline-block;
+  // @extend .epsilon;
+  border: 1px solid transparent;
+  padding: 8px 16px;
+  outline: none;
+  text-transform: uppercase;
+  @include border-radius(3px);
+  @include box-shadow($z1);
+  &:hover{
+
+  }
+  &:active{
+    @include box-shadow($z2);
+  }
+
+  position: relative;
+}
+
+.btn--flat{
+  @include box-shadow($z0);
+}
+
+.btn--google{
+  text-transform: none;
+  background-color: $color-google-red;
+  color: $color-white;
+  padding-left: 16px + 38px;
+  .icon{
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -17px;
+    font-size: 28px;
+    line-height: 34px;
+    width: 38px;
+    border-right: 1px solid $color-google-red-dark;
+  }
+  .text{
+  }
+  &:hover{
+    color: $color-white;
+    background-color: $color-google-red-hover;
+  }
+}
+
+@media #{$more-than-content-max}{
+  .btn--google{
+    padding: 12px 20px;
+    padding-left: 20px + 45px;
+    .icon{
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      margin-top: 0;
+      font-size: 28px;
+      line-height: 45px;
+      width: 45px;
+    }
+    .text{
+      font-size: 17px;
+    }
+  }
+}
+
+.btn--big{
+  @extend .delta;
+  font-weight: $font-weight-normal;
+  //font-weight: $font-weight-light;
+}
+
+.btn--default{
+  background-color: $color-complementary;
+  color: $color-title-secondary;
+
+  &:hover{
+    background-color: $color-orange-light;
+    color: $color-title-secondary;
+  }
+}
+
+.btn--outline{
+  background-color: transparent;
+  border-color: $color-complementary;
+  color: $color-complementary;
+
+  &:hover{
+    background-color: $color-orange-lightest;
+    color: $color-complementary;
+  }
+}
+
+
+.btn--tag{
+  display: none;
+  .text{
+    vertical-align: middle;
+  }
+  .icon{
+    vertical-align: middle;
+    font-size: 1.4em;
+    margin-right: 5px;
+  }
+}
+
+.search-box{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #DDDDDD;
+}
+
+.input, .textarea{
+  @include transition(border-color 0.2s linear, background-color 0.2s linear);
+  width: 100%;
+  padding: 5px 0;
+  background: none;
+  border: none;
+  outline: none;
+  color: black;
+  border-bottom: 1px solid $color-grey-lighter;
+  appearance: none;
+  -webkit-appearance: none;
+  margin-top: 0;
+  margin-bottom: 3px;
+  @include placeholder-color($color-grey-lighter);
+
+  &:focus{
+    border-bottom: 2px solid $color-primary;
+    margin-bottom: 2px;
+  }
+}
+
+.textarea{
+  box-sizing: content-box;
+  resize: none;
+}
+
+.textarea--autosize{
+  //@include transition-default();
+  height: 1.25em;
+}
+
+.input--error{
+  background-color: $color-red-lightest;
+  border-color: $color-negative;
+  &:focus{
+    border-color: $color-negative;
+  }
+}
+
+.parsley-error{
+  @extend .input--error;
+}
+
+.parsley-errors-list{
+  margin: 0;
+  padding: 0;
+  @extend .zeta;
+  color: $color-negative;
+
+  li{
+    list-style: none;
+  }
+}
+
+.input-error-label{
+  @extend .zeta;
+  color: $color-negative;
+}
+
+.input--big{
+  @extend .delta;
+  // font-weight: $font-weight-light;
+}
+
+.textarea--big{
+  @extend .delta;
+  // font-weight: $font-weight-light;
+}
+
+.input--nav{
+  @include placeholder-color($color-grey-lighter);
+  @extend .gamma;
+  color: white;
+  border-color: $color-grey-lighter;
+
+  &:focus{
+    border-color: white;
+  }
+}
+
+.input--action{
+  @include placeholder-color($color-grey-light);
+  @extend .delta;
+  color: $color-grey-dark;
+  border-color: $color-grey-lighter;
+
+  &:focus{
+    border-color: $color-grey-light;
+  }
+}
+
+.input--search{
+  @include placeholder-icon("\e610");
+}
+
+.form{
+  padding: 0;
+}
+
+.textarea-action{
+  @include placeholder-color($color-grey-light);
+  @extend .epsilon;
+  line-height: 1.4em;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid $color-border;
+  padding: 0;
+  outline: none;
+
+  padding-bottom: 5px;
+  padding-top: 5px;
+
+  box-sizing: border-box;
+  height: $action-textarea-height;
+  resize: none;
+  overflow-x: hidden;
+  width: 100%;
+
+  &:focus{
+    border-color: $color-primary;
+  }
+}
+
+.textarea--spot{
+  @extend .delta;
+  line-height: 1.4em;
+  width: 100%;
+  position: absolute;
+  top: $nav-height;
+  bottom: 46px;
+  padding: $standard-padding;
+  border: 0;
+  resize: none;
+}
+
+.form-group{
+  margin-bottom: $standard-padding-v;
+  &:last-child{
+    margin-bottom: 0;
+  }
+}
+
+.form-group--refactor{
+  padding: $standard-padding;
+}
+
+.form-group--tall{
+  margin-top: $standard-padding*2;
+  margin-bottom: $standard-padding;
+}

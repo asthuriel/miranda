@@ -1,0 +1,19 @@
+<div class="list-item list-item--bordered">
+  <div class="list-item__left-float">
+    <img class="js-user-link img-avatar img-avatar--hoverable" src="{{ user.avatar_url }}" width="42" height="42" alt="{{ user.full_name }}" />
+  </div>
+  <!--<a class='link-btn-v' href='#'>
+    <span class='icon icon-person-add'></span>
+  </a>-->
+  <div class="list-item__header">
+    <h3 class="js-user-link title-equal text--hoverable">
+      {{ user.full_name }}
+    </h3>
+    <p>
+      <span class="icon icon-thumbs-{{ veredictToText veredict 'icon'}}-black color-{{ veredictToText veredict 'class' }}"></span>
+      <span class="subtext">
+        {{ relativeDate pubdate }}
+      </span>
+    </p>
+  </div>
+</div>

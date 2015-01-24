@@ -1,0 +1,32 @@
+@mixin veredict-icon($size){
+  @include border-radius(5px);
+  color: $color-white;
+  font-size: $size * 0.7;
+  height: $size;
+  width: $size;
+  text-align: center;
+  .icon{
+    padding-left: 4px;
+    display: inline-block;
+    height: $size;
+    line-height: $size;
+  }
+}
+
+.veredict-icon{
+  @include veredict-icon(36px);
+}
+
+.veredict-icon--spot{
+  @include veredict-icon(38px);
+  float: left;
+  margin-right: $standard-padding*0.8;
+}
+
+.veredict-icon--negative{
+  background-color: $color-negative;
+}
+
+.veredict-icon--positive{
+  background-color: $color-positive;
+}

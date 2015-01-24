@@ -1,0 +1,38 @@
+- content_for :scripts do
+  = javascript_include_tag 'external_users_new'
+
+- content_for :navbar_content do
+  .nav__controls.nav__controls--left
+    = link_to root_path, class: 'nav__control' do
+      %span.icon.icon-back
+  .nav__content.nav__content--right
+    %h2.nav__title Sign Up to Flixpot
+
+.content.content--nosub.content--padded
+  .hero
+    = image_tag @user_info["image"], size: "70x70", alt: @user_info["name"], class: 'img-avatar img-avatar--big img--center hero__image'
+    %h2.title-hero
+      Hello,
+      = @user_info["first_name"]
+      = ":)"
+    %p Welcome to Flixpot. To finish your registration, please choose a display name and a username.
+
+  = form_for :user, html:{id: "users-form", class: "form"} do |f|
+    .hidden
+      = f.hidden_field :avatar_url, value: @user_info["image"]
+      = f.hidden_field :email, value: @user_info["email"]
+      = f.hidden_field :google_id, value: @user_info["google_id"]
+      = f.hidden_field :provider, value: @user_info["provider"]
+    .form-group
+      = f.label :full_name do
+        Display Name
+      = f.text_field :full_name, value: @user_info["name"], class: 'input input--big', autofocus: true, maxlength: 25, required: true, :'data-parsley-length' => '[1, 25]', :'data-parsley-trigger' => 'change', :'data-parsley-validation-threshold' => '1'
+      -# %p.input-error-label Name must be awesome.
+    .form-group
+      = f.label :username do
+        Username (http://flixpot.com/username)
+      = f.text_field :username, value: @username, class: 'input input--big', placeholder: "Write your username here.", maxlength: 15, required: true, :'data-parsley-type' => 'alphanum', :'data-parsley-length' => '[1, 15]', :'data-parsley-trigger' => 'keyup', :'data-parsley-validation-threshold' => '0', :'data-parsley-remote' => '', :'data-parsley-remote-validator' => 'usernameAvailable', :'data-parsley-remote-message' => 'We are sorry. This username is already taken.'
+      -# %p.input-error-label Name must be awesome.
+    .form-group.text-center.form-group--tall
+      = f.submit "Register and Log In", class: 'btn btn--default btn--big'
+    .hidden

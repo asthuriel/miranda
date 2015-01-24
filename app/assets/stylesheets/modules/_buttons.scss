@@ -1,0 +1,107 @@
+.btn-spot{
+  @extend .element-hoverable;
+  text-align: right;
+  min-width: 50px;
+  color: $color-btn-spot;
+  display: inline-block;
+  margin-left: 10px;
+  .icon{
+    @extend .delta;
+    vertical-align: middle;
+  }
+  .text{
+    @extend .zeta;
+    line-height: 15px;
+    vertical-align: middle;
+    color: $color-btn-spot-text;
+    font-weight: $font-weight-medium;
+  }
+  &:hover{
+    color: $color-btn-spot-text;
+  }
+}
+.btn-spot--positive{
+  color: $color-positive;
+  &:hover{
+    color: $color-positive;
+  }
+}
+.btn-spot--negative{
+  color: $color-negative;
+  &:hover{
+    color: $color-negative;
+  }
+}
+
+$link-btn-size: 30px;
+
+.link-btn{
+  @extend .element-hoverable;
+  height: $link-btn-size;
+  //line-height: $link-btn-size;
+  font-size: $link-btn-size;
+  outline: none;
+  display: block;
+  text-align: center;
+  color: $color-link-primary;
+  &:hover{
+    color: $color-link-primary-hover;
+  }
+  .icon{
+    vertical-align: middle;
+  }
+}
+
+.link-btn-v{
+  @extend .link-btn;
+  position: absolute;
+  top: 50%;
+  right: $standard-padding;
+  margin-top: -$link-btn-size/2;
+}
+
+.link-btn-v--narrow{
+  top: 50%;
+  right: $standard-padding/2;
+}
+
+
+.btn-add-user{
+  @extend .link-btn-v;
+  background-color: $color-orange;
+  color: $color-white;
+  font-size: 20px;
+  @include border-radius(4px);
+  @include box-shadow($z1);
+  &:hover{
+    background-color: $color-orange-light;
+    color: $color-white;
+  }
+  &:active{
+    @include box-shadow($z2);
+  }
+}
+
+$btn-float-size: 60px;
+
+.btn-float{
+  @extend .element-hoverable;
+  @include border-radius(50%);
+  @include box-shadow($z1);
+
+  position: fixed;
+  bottom: 25px;
+  right: 20px;
+  width: $btn-float-size;
+  height: $btn-float-size;
+  line-height: $btn-float-size;
+  background-color: $color-btn-float;
+  color: $color-white;
+  text-align: center;
+  font-size: 32px;
+
+  &:hover{
+    background-color: $color-btn-float-hover;
+    @include box-shadow(0 5px 8px rgba(10,10,10,0.4));
+  }
+}

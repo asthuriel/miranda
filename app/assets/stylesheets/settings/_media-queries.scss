@@ -1,0 +1,29 @@
+$content-min: 310px!default;
+$content-max: 600px!default;
+
+$nav-max: 1000px!default;
+
+$subnav-links-max: 5000px!default; // REFACTOR!!!
+
+$less-than-content-max: "only screen and (max-width: #{$content-max - 1})";
+$less-than-subnav-links-max: "only screen and (max-width: #{$subnav-links-max - 1})";
+
+$more-than-content-max: "only screen and (min-width: #{$content-max})";
+
+
+// unused:
+
+$screen-small:                    480px!default;
+$screen-medium:                   768px!default;
+$screen-large:                    1024px!default;
+$screen-extra-large:              1280px!default;
+
+$screen:                          "only screen";
+$small:                           "only screen and (min-width: #{$screen-small})";
+$medium:                          "only screen and (min-width: #{$screen-medium})";
+$large-max:                       "only screen and (max-width: #{$screen-large - 1})";
+$small-max:                       "only screen and (max-width: #{$screen-small - 1})";
+$medium-max:                      "only screen and (max-width: #{$screen-medium - 1})";
+$large:                           "only screen and (min-width: #{$screen-large})";
+$landscape:                       "only screen and (orientation: landscape)";
+$portrait:                        "only screen and (orientation: portrait)";

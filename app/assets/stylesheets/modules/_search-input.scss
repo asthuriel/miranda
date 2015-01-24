@@ -1,0 +1,35 @@
+.search-input{
+  position: relative;
+
+  a { // REFACTOR!!
+    @extend .element-hoverable;
+    font-size: 24px;
+    color: black;
+    &:hover{
+      color: white;
+    }
+  }
+}
+
+.search-input__controls{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.search-input__loading,
+.search-input__clear{
+  float: right;
+  margin-left: 6px;
+  display: none;
+  color: black;
+  height: $nav-height;
+  line-height: $nav-height;
+  padding: 0 5px;
+
+  a{
+    line-height: $nav-height;
+    vertical-align: middle;
+  }
+}
+

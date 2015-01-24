@@ -1,0 +1,25 @@
+<div class="list-item list-item--bordered list-item--hoverable">
+  <div class="list-item__left-float no-padding">
+    {{#if still_path}}
+      <img width="100" alt="{{ name }}" class="img" src="http://image.tmdb.org/t/p/w185/{{still_path}}" />
+    {{else}}
+      <img width="100" alt="{{ name }}" class="img" src="/assets/movie-placeholder.png" />
+    {{/if}}
+  </div>
+  <!--<a href="#" class="link-btn-v link-btn-v--narrow js-btn-info">
+    <span class="icon icon-more-v"></span>
+  </a>-->
+  <div class="list-item__header list-item__header--long-left">
+    <h3 class="title-item">
+      Ep. {{ episode_number }} - {{ name }}
+      <span class="subtext">
+        {{#if air_date}}
+          - {{formattedDate air_date}}
+        {{else}}
+          - (no date available)
+        {{/if}}
+      </span>
+    </h3>
+    <p class="js-episode-overview margin-top-quarter clamp-2 animated-height" >{{ overview }}</p>
+  </div>
+</div>

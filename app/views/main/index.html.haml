@@ -1,0 +1,45 @@
+- if user_signed_in?
+  - content_for :scripts do
+    = javascript_include_tag 'index'
+
+  - content_for :navbar_content do
+    / .nav__controls.nav__controls--left
+    /   = link_to root_path, class: 'nav__control' do
+    /     %span.icon.icon-menu
+    .nav__content.nav__content--full
+      %h2.nav__title Activity
+
+  = render "shared/subnav"
+  = hidden_field :user, :id, value: current_user.id
+
+  .hidden
+    = form_for :veredict, url: "#", html:{id: "veredicts-form", class: "form"} do |f|
+      = f.hidden_field :spot_id, value: ''
+      = f.hidden_field :user_id, value: current_user.id
+      = f.hidden_field :veredict, value: 0
+
+  .content
+    #spots
+
+- else
+  .landing
+    .content.content--top.content--landing.content--padded.text-center
+      =image_tag 'popcorn.png', class: 'img img--center landing__image'
+      %h1.landing__title Hey there!
+      .landing__welcome
+        %p Flixpot lets you review movies and tv shows and recommend them to friends. Ready to joing the fun?
+      .landing__button
+        = link_to omniauth_authorize_path('user', 'google_oauth2'), class: 'btn btn--google' do
+          %span.icon.icon-google
+          %span.text
+            Sign in or register with Google
+      .landing__terms
+        %p
+          %strong Disclaimer:
+          Flixpot is currently on <em>alpha</em>, which means there's still tons of bugs to iron out. Said bugs may cause (among other things) measles, chicken pox, spanish flu, kung flu, and sudden and irreversible alopecia. Use it at your own risk. But use it :)
+
+
+
+
+
+

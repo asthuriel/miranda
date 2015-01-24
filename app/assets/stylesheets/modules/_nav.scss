@@ -1,0 +1,259 @@
+.subnav{
+  @include box-shadow($z1);
+  @include transition(all linear 0.2s);
+
+  background-color: $color-subnav-bgnd;
+
+  position: fixed;
+  top: $nav-height;
+  left: 0;
+  right: 0;
+  z-index: 20;
+
+  height: $subnav-height;
+
+  text-align: center;
+}
+
+.subnav__items{
+  padding: 0;
+  margin: 0;
+}
+
+.subnav__item{
+  list-style: none;
+  display: inline-block;
+  height: $subnav-height;
+  // min-width: $subnav-height;
+  line-height: $subnav-height;
+  width: 18%;
+  position: relative;
+
+  &:last-child{
+    width: 10%;
+  }
+}
+
+.subnav__link{
+  @extend .element-hoverable;
+  display: inline-block;
+  height: $subnav-height;
+  line-height: $subnav-height;
+  width: 100%;
+
+  color: $color-subnav-link;
+  border-bottom: 3px solid transparent;
+  padding: 0 8px;
+  position: relative;
+
+  @media #{$less-than-subnav-links-max}{
+    padding: 0 5px;
+  }
+
+  .icon{
+    font-size: $subnav-icon-size;
+    vertical-align: middle;
+  }
+
+  .icon--small-fix{
+    font-size: $subnav-icon-size * 0.8;
+  }
+
+  .text{
+    vertical-align: middle;
+    margin-left: 5px;
+    @media #{$less-than-subnav-links-max}{
+      display: none;
+    }
+  }
+
+  &.subnav__link--active{
+    color: $color-subnav-link-active;
+    border-color: $color-subnav-link-active-border;
+  }
+  &:hover{
+    color: $color-subnav-link-hover;
+    border-color: $color-subnav-link-hover-border;
+  }
+
+  &.link-disabled{
+    color: $color-subnav-link-disabled;
+  }
+}
+
+.subnav__link--submenu{
+  &:hover{
+    color: $color-subnav-link;
+    border-color: transparent;
+  }
+}
+
+.submenu{
+  @include box-shadow($z2);
+  @include border-radius(2px);
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: white;
+  line-height: 1em;
+  min-width: 170px;
+  text-align: left;
+  //display: block;
+}
+
+.submenu--visible{
+
+}
+
+.submenu__item{
+  padding: 13px 18px;
+}
+
+.submenu__item{
+  .icon{
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+  .text{
+    vertical-align: middle;
+  }
+}
+
+.submenu__link{
+  display: block;
+  width: 100%;
+  color: $color-text-primary;
+}
+
+
+
+
+.nav{
+  @include box-shadow($z1);
+  @include transition(all linear 0.2s);
+
+  background-color: $color-nav-bgnd;
+  color: $color-nav;
+  border-bottom: 1px solid $color-nav-border;
+  height: $nav-height;
+
+  @extend .gamma;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  overflow: hidden;
+}
+
+.nav--alternate{
+  background-color: transparent;
+  border-bottom: none;
+  @include box-shadow($z0);
+}
+
+.nav__controls{
+  position: absolute;
+  top: 0;
+  line-height: $nav-height;
+
+  a.nav__control{
+    @extend .element-hoverable;
+    display: block;
+    height: $nav-height;
+    font-size: $nav-icon-size;
+    min-width: $nav-height;
+    text-align: center;
+
+    color: black;
+
+    &:hover{
+      color: white;
+    }
+
+    span{
+      vertical-align: middle;
+      line-height: $nav-height;
+    }
+  }
+}
+
+.nav--alternate{
+  a.nav__control{
+    color: $color-grey-lighter;
+    &:hover{
+      color: white;
+    }
+  }
+}
+
+.nav__controls--left{
+  left: 0;
+}
+.nav__controls--right{
+  right: 0;
+}
+
+.nav__controls--center-right{
+  left: $nav-height;
+  right: $standard-padding;
+  //padding-top: 10px;
+}
+
+.nav__content{
+  position: absolute;
+  top: 0;
+  left: $nav-height;
+  right: $nav-height;
+}
+
+.nav__content--left{
+  left: $standard-padding;
+}
+
+.nav__content--right{
+  right: $standard-padding;
+}
+
+.nav__content--full{
+  left: $standard-padding;
+  right: $standard-padding;
+}
+
+.nav__title{
+  @extend .gamma;
+  line-height: $nav-height;
+  @include text-clamp($nav-height, 1);
+}
+
+.nav__title-secondary{
+  margin-top: 4px;
+  @extend .delta;
+  line-height: 1.2em;
+  @include text-clamp(25px, 1);
+}
+
+.nav__subtitle{
+  margin-top: 4px;
+  @extend .zeta;
+  line-height: 1.2em;
+  @include text-clamp(18px, 1);
+}
+
+
+
+
+
+.nav__icon-link{
+  @extend .element-hoverable;
+  color: $color-nav-link;
+  font-size: 24px;
+  margin: 0 20px;
+  &.selected{
+    color: $color-nav-link-selected;
+  }
+  &:hover{
+    color: $color-nav-link-hover;
+  }
+}

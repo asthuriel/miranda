@@ -1,0 +1,57 @@
+- content_for :scripts do
+  = javascript_include_tag 'spots_index'
+
+- content_for :navbar_content do
+  -if user_signed_in?
+    .nav__controls.nav__controls--left
+      %a#nav-back.nav__control{href: "#"}
+        %span.icon.icon-back
+    .nav__content.nav__content--right
+      %h2.nav__title-secondary= @user.full_name
+      %h3.nav__subtitle User Profile
+  -else
+    .nav__content.nav__content--full
+      %h2.nav__title-secondary= @user.full_name
+      %h3.nav__subtitle User Profile
+
+- if user_signed_in?
+  = hidden_field :current_user, :id, value: current_user.id
+= hidden_field :user, :id, value: @user.id
+
+- if user_signed_in?
+  .hidden
+    = form_for :veredict, url: "#", html:{id: "veredicts-form", class: "form"} do |f|
+      = f.hidden_field :spot_id, value: ''
+      = f.hidden_field :user_id, value: current_user.id
+      = f.hidden_field :veredict, value: 0
+.content.content--top
+  .profile
+    .img-backdrop__container-wrapper
+      - if @last_media
+        #img-backdrop.img-backdrop__container.img-backdrop__container--gradient-top{:'data-stellar-background-ratio' => '0.7', :style => 'background: url("http://image.tmdb.org/t/p/w780/' +  @last_media.backdrop_path + '")'}
+      - else
+        #img-backdrop.img-backdrop__container.img-backdrop__container--gradient-top{:'data-stellar-background-ratio' => '0.7'}
+    = image_tag @user.avatar_url, class: 'img-profile', alt: @user.full_name
+    .profile__content
+      %h2.title-hero.title-hero--short= @user.full_name
+      - if @user.bio != ''
+        %p.margin-bottom-one= @user.bio
+      - if user_signed_in?
+        .hidden
+          = form_for :tag_along, url: "#", html:{id: "tag-alongs-form", class: "form"} do |f|
+            = f.hidden_field :tagger_id, value: current_user.id
+            = f.hidden_field :tagged_id, value: @user.id
+          = hidden_field :tag, :status, value: @user.tagger_id
+        - if current_user.id != @user.id
+          .padding-top-quarter
+            %a#untag-along-btn{href: '#', class: 'btn btn--flat btn--tag btn--outline'}
+              %span.icon.icon-remove-circle
+              %span.text
+                Tagging Along
+            %a#tag-along-btn{href: '#', class: 'btn btn--flat btn--tag btn--default'}
+              %span.icon.icon-person-add
+              %span.text
+                Tag Along!
+
+  #spots{class: user_signed_in? ? '' : 'btn-spot-disabled'}
+

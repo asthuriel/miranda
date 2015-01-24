@@ -1,0 +1,14 @@
+- content_for :scripts do
+  = javascript_include_tag 'notifications'
+
+- content_for :navbar_content do
+  .nav__content.nav__content--full
+    %h2.nav__title Notifications
+
+= render "shared/subnav"
+
+.hidden
+  = hidden_field :notifications, :unread, value: @new_notif_count
+
+.content
+  #notifications

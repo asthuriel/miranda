@@ -1,0 +1,92 @@
+@mixin box-shadow($value){
+  -webkit-box-shadow: $value;
+  -moz-box-shadow: $value;
+  -o-box-shadow: $value;
+  box-shadow: $value;
+}
+
+@mixin border-radius($value){
+  -webkit-border-radius: $value;
+  -moz-border-radius: $value;
+  -o-border-radius: $value;
+  border-radius: $value;
+}
+
+@mixin transition($value...){
+  -webkit-transition: $value;
+  -moz-transition: $value;
+  -o-transition: $value;
+  transition: $value;
+}
+
+@mixin transition-default(){
+  @include transition(all linear 0.2s);
+}
+
+@mixin text-clamp($height, $lines){
+  display: block; /* Fallback for non-webkit */
+  display: -webkit-box;
+  max-height:  $height; // $font-size*$line-height*$lines-to-show; /* Fallback for non-webkit */
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin linear-gradient-vertical($start-color, $end-color){
+  background: $start-color; /* Old browsers */
+  background: -moz-linear-gradient(top, $start-color 0%, $end-color 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $start-color), color-stop(100%, $end-color)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, $start-color 0%, $end-color 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, $start-color 0%, $end-color 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, $start-color 0%, $end-color 100%); /* IE10+ */
+  background: linear-gradient(to bottom, $start-color 0%, $end-color 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$start-color', endColorstr='$end-color',GradientType=0 ); /* IE6-9 */
+}
+
+@mixin radial-gradient($start-color, $end-color){
+  background: $start-color; /* Old browsers */
+  background: -moz-radial-gradient(center, ellipse cover, $start-color 0%, $end-color 100%); /* FF3.6+ */
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, $start-color), color-stop(100%, $end-color)); /* Chrome,Safari4+ */
+  background: -webkit-radial-gradient(center, ellipse cover, $start-color 0%, $end-color 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-radial-gradient(center, ellipse cover, $start-color 0%, $end-color 100%); /* Opera 12+ */
+  background: -ms-radial-gradient(center, ellipse cover, $start-color 0%, $end-color 100%); /* IE10+ */
+  background: radial-gradient(ellipse at center, $start-color 0%, $end-color 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$start-color', endColorstr='$end-color',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+@mixin placeholder-color($color){
+  &::-webkit-input-placeholder{
+    color: $color;
+  }
+  &::-moz-placeholder{
+    color: $color;
+  } /* firefox 19+ */
+  &:-ms-input-placeholder{
+    color: $color;
+  } /* ie */
+  /*input:-moz-placeholder  {
+    color: $color;
+  }*/
+}
+
+@mixin placeholder-icon($icon-content){
+  &::-webkit-input-placeholder::before{
+    font-family: FlixpotIcons;
+    content: $icon-content;
+  }
+  &::-moz-placeholder::before{
+    font-family: FlixpotIcons;
+    content: $icon-content;
+  } /* firefox 19+ */
+  &:-ms-input-placeholder::before{
+    font-family: FlixpotIcons;
+    content: $icon-content;
+  } /* ie */
+  /*input:-moz-placeholder::before  {
+    font-family: FlixpotIcons;
+    content: $icon-content;
+  }*/
+}
+
+

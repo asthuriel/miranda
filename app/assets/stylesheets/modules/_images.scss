@@ -1,0 +1,101 @@
+.img{
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.img--full{
+  width: 100%;
+  height: auto;
+}
+
+.img--circle{
+  @include border-radius(50%);
+}
+
+.img-avatar{
+  @extend .img;
+  @extend .img--circle;
+  height: 42px;
+  width: 42px;
+  margin-left: -1px;
+}
+
+.img-avatar--hoverable{
+  @extend .element-hoverable;
+  box-sizing: content-box;
+  border: 4px solid transparent;
+  margin: -4px;
+  margin-left: -5px;
+
+  &:hover{
+    border-color: #B2EBF2; //$color-primary;
+  }
+}
+
+.img-avatar--big{
+  height: 70px;
+  width: 70px;
+  margin: 0;
+}
+
+.img-profile{
+  @extend .img;
+  @extend .img--circle;
+  @extend .img--center;
+  @include box-shadow($z1);
+  height: 100px;
+  width: 100px;
+  margin-top: -70px;
+  position: relative;
+  z-index: 10;
+}
+
+.img--center{
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.img-backdrop__container-wrapper{
+  width: 100%;
+  padding-bottom: 56%;
+  position: relative;
+  overflow: hidden;
+}
+
+.img-backdrop__container{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: asset-url('film-reel.jpg');
+  background-size: cover !important;
+  img{
+    @extend .img--full;
+  }
+}
+
+.img-backdrop__container--gradient-bottom{
+  &:after{
+    @include linear-gradient-vertical(transparent, white);
+    content: " ";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+  }
+}
+
+.img-backdrop__container--gradient-top{
+  &:before{
+    @include linear-gradient-vertical(rgba(10,10,10,0.7), rgba(0,0,0,0));
+    content: " ";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: $nav-height*1.2;
+  }
+}

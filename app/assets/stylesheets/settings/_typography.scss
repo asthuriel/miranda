@@ -1,0 +1,130 @@
+$font-family-default: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+$font-weight-thin: 100;
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+$font-weight-ultra: 900;
+
+$font-size-base: 14px;
+$line-height-base: 1.43em;
+
+
+html{
+  font-size: $font-size-base;
+  font-weight: $font-weight-normal;
+  color: $color-text-primary;
+  line-height: $line-height-base;
+}
+
+p{
+  line-height: $line-height-base;
+}
+
+p, h1, h2, h3, h4, h5, h6{
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6, .alpha, .beta, .gamma, .delta, .epsilon, .zeta{
+  font-weight: $font-weight-normal;
+}
+
+p{
+  font-size: $font-size-base;
+}
+
+h1, .alpha{
+  font-size: $font-size-base * 3.2;
+  line-height: 1.3em;
+}
+
+h2, .beta{
+  font-size: $font-size-base * 2;
+  line-height: 1.3em;
+}
+
+h3, .gamma{
+  font-size: $font-size-base * 1.5;
+  line-height: 1.3em;
+}
+
+h4, .delta{
+  font-size: $font-size-base * 1.3;
+  line-height: 1.3em;
+}
+
+h5, .epsilon{
+  font-size: $font-size-base * 1;
+  line-height: 1.43em;
+}
+
+h6, .zeta{
+  font-size: $font-size-base * 0.9;
+}
+
+small, .small{
+  font-size: $font-size-base * 0.8;
+}
+
+strong{
+  font-weight: $font-weight-medium;
+}
+
+.title-hero{
+  @extend .beta;
+  font-weight: $font-weight-light;
+  color: $color-title-primary;
+  margin: 0.5em 0;
+}
+
+.title-hero--short{
+  margin: 0.5em 0 0.3em 0;
+}
+
+.title-article{
+  @extend .gamma;
+  font-weight: $font-weight-light;
+  color: $color-title-primary;
+  margin-bottom: 0.5em
+}
+
+.title-item{
+  @extend .delta;
+  font-weight: $font-weight-light;
+  color: $color-title-primary;
+}
+
+.title-item--vcenter{
+  position: absolute;
+  top: 50%;
+  margin-top: -13px;
+}
+
+.title-equal{
+  @extend .epsilon;
+  color: $color-title-primary;
+  font-weight: $font-weight-bold;
+}
+
+.subtext{
+  @extend .small;
+  color: $color-text-secondary;
+  font-weight: $font-weight-normal;
+}
+
+p.clamp-2{
+  @include text-clamp(2.7em, 2);
+}
+
+p.clamp-3{
+  @include text-clamp(4.2em, 3);
+}
+
+.text--hoverable{
+  @extend .element-hoverable;
+  &:hover{
+    text-decoration: underline;
+  }
+}

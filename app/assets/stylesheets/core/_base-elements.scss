@@ -1,0 +1,8 @@
+.element-hoverable{
+  @include transition-default();
+  cursor: pointer;
+
+  &:hover{
+    @include transition-default();
+  }
+}

@@ -1,0 +1,29 @@
+<div class="list-item list-item--bordered list-item--hoverable">
+  <div class="list-item__left-float no-padding">
+    {{#if poster_path}}
+      <img width="56" height="84" alt="{{title}}" class="img" src="http://image.tmdb.org/t/p/w92/{{poster_path}}" />
+    {{else}}
+      <img width="56" height="84" alt="{{title}}" class="img" src="/assets/movie-placeholder.png" />
+    {{/if}}
+  </div>
+  <a href="#" class="link-btn-v link-btn-v--narrow js-btn-info">
+    <span class="icon icon-more-v"></span>
+  </a>
+  <div class="list-item__header list-item__header--alternate">
+    <h3 class="title-item">
+      {{title}}
+      <span class="subtext">
+        {{#if release_date}}
+          - {{yearOfDate release_date}}
+        {{else}}
+          - (no date available)
+        {{/if}}
+      </span>
+    </h3>
+    {{#if cast}}
+      <p class="clamp-2 margin-top-quarter">
+        {{cast}}
+      </p>
+    {{/if}}
+  </div>
+</div>

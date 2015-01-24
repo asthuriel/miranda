@@ -1,0 +1,80 @@
+-if @spot.media_item.category == 0 #REFACTOR!! This should be a helper
+  - media_title = @spot.media_item.title
+-else
+  - media_title = @spot.media_item.parent.title + " " + @spot.media_item.season_number.to_s + "." + @spot.media_item.episode_number.to_s + ": " + @spot.media_item.title
+
+- content_for :scripts do
+  = javascript_include_tag 'spots_show'
+
+- content_for :navbar_content do
+  -if user_signed_in?
+    .nav__controls.nav__controls--left
+      %a#nav-back.nav__control{href: "#"}
+        %span.icon.icon-back
+    / .nav__controls.nav__controls--right
+    /   %a#nav-done.nav__control{href: "/movies"}
+    /     %span.icon.icon-more-v
+    .nav__content.nav__content--right
+      %h2.nav__title-secondary= media_title
+      %h2.nav__subtitle= @spot.user.full_name
+  -else
+    .nav__content.nav__content--full
+      %h2.nav__title-secondary= media_title
+      %h2.nav__subtitle= @spot.user.full_name
+
+.content.content--top.content--actionable
+  .spot
+    = hidden_field(:spot, :id, val: @spot.id)
+    .img-backdrop__container-wrapper
+      - if @spot.media_item.backdrop_path != ''
+        #img-backdrop.img-backdrop__container.img-backdrop__container--gradient-top{:'data-stellar-background-ratio' => '0.7', :style => 'background: url("http://image.tmdb.org/t/p/w780/' +  @spot.media_item.backdrop_path + '")'}
+      - else
+        #img-backdrop.img-backdrop__container.img-backdrop__container--gradient-top{:'data-stellar-background-ratio' => '0.7'}
+    .spot__header
+      %img.img.img--circle.spot__user-avatar{src: @spot.user.avatar_url, width: 56, height: 56}
+
+      - if @spot.veredict == 1
+        .veredict-icon--spot.veredict-icon--positive
+          %span.icon.icon-thumbs-up
+      - else
+        .veredict-icon--spot.veredict-icon--negative
+          %span.icon.icon-thumbs-down
+      .spot__header-title
+        %h2.spot__media-title= media_title
+        %p#spot-pubdate.spot__pubdate= @spot.pubdate
+
+    .spot__review
+      %p= raw @spot.review.gsub(/(?:\n\r?|\r\n?)/, '</p><p>')
+
+    #veredict-lists.spot__veredicts-section
+    #veredict-collection-popup.mfp-hide.modal
+      %h2.modal__title Veredict Activity
+      .modal__body--full
+        #veredict-collection-container
+    #comments.spot__comments
+
+- if user_signed_in?
+  .hidden
+    = hidden_field :current_user, :id, value: current_user.id
+  .action-bar-wrapper
+    #action-bar.action-bar
+      %a#action-thumb-up.action__button.action__button--left1{href: '#', class: @user_veredict ? (@user_veredict.veredict == 1 ? 'color-positive' : '') : ''}
+        %span.icon.icon-thumbs-up-black
+      %a#action-thumb-down.action__button.action__button--left2{href: '#', class: @user_veredict ? (@user_veredict.veredict == -1 ? 'color-negative' : '') : ''}
+        %span.icon.icon-thumbs-down-black
+
+      %a#action-done.action__button.action__button--right.link-disabled{href: '#'}
+        %span.icon.icon-send
+
+      .action__text
+        = form_for :comment, url: "#", html:{id: "comments-form", class: "form"} do |f|
+          = f.hidden_field :spot_id, value: @spot.id
+          = f.hidden_field :user_id, value: current_user.id
+          = f.text_area :content, placeholder: "Leave a comment!", maxlength: 256, class: 'textarea-action'
+      .hidden
+        = form_for :veredict, url: "#", html:{id: "veredicts-form", class: "form"} do |f|
+          = f.hidden_field :spot_id, value: @spot.id
+          = f.hidden_field :user_id, value: current_user.id
+          = f.hidden_field :veredict, value: (@user_veredict ? @user_veredict.veredict : 0)
+
+

@@ -1,0 +1,112 @@
+$color-green-lighter: #DCEDC8;
+$color-green-light: #AED581;
+$color-green: #8BC34A;
+$color-green-dark: #7CB342;
+//$color-green-darker: #33691E;
+
+$color-cyan-lighter: #B2EBF2;
+$color-cyan-light: #4DD0E1;
+$color-cyan: #00BCD4;
+$color-cyan-dark: #00ACC1;
+
+$color-grey-lightest: #ECEFF1;
+$color-grey-lighter: #CFD8DC;
+$color-grey-light: #90A4AE;
+$color-grey: #607D8B;
+$color-grey-dark: #455A64;
+$color-grey-darker: #37474F;
+$color-grey-darkest: #263238;
+
+$color-ivory-light: #FCFCFC;
+$color-ivory: #F5F5F5;
+
+$color-red: #F44336;
+$color-red-lightest: #FFEBEE;
+
+$color-black: #000000;
+$color-white: #FFFFFF;
+
+$color-orange-dark: #DD2C00;
+$color-orange: #FF5722;
+$color-orange-light: #FF7043;
+$color-orange-lightest: #FBE9E7;
+
+
+$color-primary: $color-cyan;
+$color-complementary: $color-orange;
+
+
+// nav colors:
+
+$color-subnav-bgnd: $color-grey-lightest;
+$color-subnav-link: $color-grey-light;
+$color-subnav-link-hover: $color-grey-dark;
+$color-subnav-link-active: $color-grey-dark;
+$color-subnav-link-active-border: $color-primary;
+$color-subnav-link-hover-border: $color-grey-lighter;
+$color-subnav-link-disabled: $color-grey-lighter;
+
+$color-nav-bgnd: $color-cyan;
+$color-nav: $color-white;
+$color-nav-border: $color-cyan-dark;
+$color-nav-link: $color-cyan-lighter;
+$color-nav-link-selected: $color-white;
+$color-nav-link-hover: $color-white;
+
+// action colors:
+
+$color-action-bgnd: $color-grey-lightest;
+$color-action: $color-grey-darkest;
+$color-action-border: $color-grey-lighter;
+
+
+// title section colors:
+
+$color-title-section-bgnd: $color-grey;
+$color-title-section: $color-white;
+
+// text colors:
+
+$color-text-primary: $color-grey-darkest;
+$color-text-secondary: $color-grey-light;
+$color-title-primary: $color-cyan;
+$color-title-secondary: $color-white;
+
+// link colors:
+
+$color-link-secondary: $color-cyan;
+$color-link-secondary-hover: $color-cyan-light;
+
+$color-link-primary: $color-grey-lighter;
+$color-link-primary-hover: $color-grey-light;
+
+
+
+$color-body-bgnd: $color-ivory;
+
+$color-comment-bgnd: $color-grey-lightest;
+
+$color-btn-spot: $color-grey-lighter;
+$color-btn-spot-text: $color-grey-light;
+
+$color-action-btn: $color-grey-light;
+$color-action-btn-hover: $color-grey-lighter;
+$color-action-btn-disabled: $color-grey-lighter;
+
+$color-border: $color-grey-lighter;
+
+$color-content-bgnd: $color-ivory-light;
+
+$color-positive: $color-cyan;
+$color-negative: $color-orange;
+
+$color-btn-float: $color-orange;
+$color-btn-float-hover: $color-orange-light;
+
+// social media colors:
+
+$color-google-red: #E53935;
+$color-google-red-hover: #F44336;
+$color-google-red-dark: #D32F2F;
+
+

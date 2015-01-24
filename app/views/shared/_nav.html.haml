@@ -1,0 +1,6 @@
+%nav#nav.nav{class: ((controller_name == 'spots' and action_name == 'show') or (controller_name == 'spots' and action_name == 'index')) ? 'nav--alternate' : ''}
+  .container.container--nav
+    #js-nav-content
+      = yield :navbar_content
+
+

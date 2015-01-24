@@ -1,0 +1,18 @@
+jsonContainerName: en los casos en los que la API encapsule tanto los items únicos como los items de colección en
+un elemento padre, este es el nombre que se usa.
+
+fixedOptions: parámetros que siempre se envian en al api call y que resulta conveniente añadir al modelo y no siempre
+que se realizan llamados. Util en el caso en que necesite agregarse un API key.
+
+
+find(id): llama un único elemento y reemplaza el item temporal con este. devuelve un item.
+showItem: vacia el container del item y lo muestra.
+
+fetch: llama todos los elementos y reemplaza la colección actual.
+fetchMore: llama todo y apendea a la colección actual.
+showCollection: vacía el container y muestra todos los elementos de la colección.
+appendCollection: deja el contenedor quieto y appendea los elementos sin mostrar de la colección.
+
+afterFetch: ejecuta una funcion sobre los elementos fetcheados con fetch o fetchMore. Solo lo  fetcheado.
+beforeShow: ejecuta una funcion antes de mostrar un item pero si existe algun diferido dentro NO espera antes de mostrar.
+

@@ -1,0 +1,101 @@
+.action-bar-wrapper{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+}
+
+.action-bar{
+  // @include box-shadow($z1);
+  max-width: $content-max;
+  min-width: $content-min;
+  margin: 0 auto;
+  position: relative;
+  background-color: $color-action-bgnd;
+  color: $color-action;
+  border: 1px solid $color-action-border;
+  border-bottom: none;
+  overflow: hidden;
+
+  line-height: 0;
+  font-size: 0;
+}
+
+$action-button-size: $action-height;
+
+.action__button{
+  @extend .element-hoverable;
+  font-size: 24px;
+  display: inline-block;
+  height: $action-button-size;
+  width: $action-button-size;
+  line-height: $action-button-size;
+  text-align: center;
+
+  color: $color-action-btn;
+
+  &:hover{
+    color: $color-action-btn-hover;
+  }
+  position: absolute;
+  top: 50%;
+  margin-top: -$action-button-size/2;
+
+  &.link-disabled{
+    color: $color-action-btn-disabled;
+  }
+}
+
+.action__button--inline{
+  position: relative;
+  display: inline;
+  top: 0;
+}
+
+.action__button--wide{
+  padding: 0 10px;
+}
+
+.action__button--left1{
+  left: 6px;
+}
+
+.action__button--left2{
+  left: $action-button-size+3;
+}
+
+.action__button--right{
+  right: 5px;
+}
+
+.action__center{
+  text-align: center;
+  min-height: $action-button-size;
+}
+
+.action__text{
+  @include transition-default();
+  /*margin-top: $standard-padding/1.2;
+  margin-bottom: $standard-padding/2.5;*/
+  margin-top: ($action-button-size - $action-textarea-height) / 2;
+  margin-bottom: ($action-button-size - $action-textarea-height) / 2;
+
+  margin-left: ($action-button-size*2)+12;
+  margin-right: $action-button-size+10;
+}
+
+.action-bar--text-expanded{
+  .action__button--left1{
+    left: -$action-button-size*2;
+  }
+  .action__button--left2{
+    left: -$action-button-size;
+  }
+  .action__text{
+    @include transition-default();
+    margin-left: $standard-padding;
+  }
+}
+
+

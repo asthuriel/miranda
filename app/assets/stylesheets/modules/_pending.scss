@@ -1,0 +1,45 @@
+.notification-blurb{
+  background-color: $color-orange;
+  color: $color-white;
+  @include border-radius(50%);
+  font-size: 10px;
+  position: absolute;
+  display: block;
+  height: 15px;
+  width: 15px;
+  line-height: 15px;
+  vertical-align: middle;
+  text-align: center;
+  top: 10px;
+  left: 50%;
+  margin-left: -2px;
+  box-sizing: content-box;
+  border: 2px solid $color-grey-lightest;
+}
+
+.slick-slider{
+  margin-bottom: 0 !important;
+}
+
+.veredict-section{
+  background-color: $color-grey-lightest;
+  padding: 0 $standard-padding;
+  padding-top: 4px;
+  text-align: center;
+  border-bottom: 1px solid $color-border;
+  a{
+    @extend .element-hoverable;
+    @extend .beta;
+    display: inline-block;
+    width: 50px;
+    line-height: 50px;
+    margin: 0 10px;
+  }
+}
+
+.users-list{
+  border-bottom: 1px solid $color-border;
+  &:empty{
+    border: none;
+  }
+}

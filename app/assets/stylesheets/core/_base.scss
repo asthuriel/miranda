@@ -1,0 +1,27 @@
+html{
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body{
+  -webkit-font-smoothing: antialiased;
+}
+
+html, body{
+  height: 100%;
+  // min-height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+a{
+  text-decoration: none;
+  color: $color-link-primary;
+
+  &:hover{
+    color: $color-link-primary-hover;
+  }
+}

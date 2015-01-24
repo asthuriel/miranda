@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  spot_id: 
+  user_id: 
+  pubdate: 2015-01-11 19:36:19
+  veredict: 1
+
+two:
+  spot_id: 
+  user_id: 
+  pubdate: 2015-01-11 19:36:19
+  veredict: 1

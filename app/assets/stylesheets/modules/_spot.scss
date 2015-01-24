@@ -1,0 +1,79 @@
+.spot{
+  background-color: $color-content-bgnd;
+}
+
+.spot__media-title{
+  @extend .gamma;
+  margin-top: -0.2em;
+  margin-bottom: 0.1em;
+  font-weight: $font-weight-light;
+  color: $color-title-primary;
+}
+
+.spot__pubdate{
+  @extend .zeta;
+  color: $color-text-secondary;
+}
+
+.spot__header,
+.spot__review{
+  padding: $standard-padding;
+  padding-bottom: 0;
+}
+
+.spot__review{
+  padding-bottom: $standard-padding;
+  p{
+    min-height: 0.6em;
+  }
+}
+
+.spot__header-title{
+  margin-left: 56px;
+}
+
+.spot__user-avatar{
+  @include box-shadow($z1);
+  position: relative;
+  z-index: 10;
+  float: right;
+  margin-top: -(28px + $standard-padding);
+  margin-left: $standard-padding;
+}
+
+.spot__veredicts-section{
+  border-top: 1px solid $color-border;
+  cursor: pointer;
+  &:hover{
+    background-color: $color-white;
+  }
+  &:empty{
+    border: none;
+  }
+}
+
+.spot__veredicts{
+  @extend .zeta;
+  padding: $standard-padding-v $standard-padding;
+  line-height: 1.4em;
+  &:nth-child(2){
+    padding-top: 0;
+  }
+  .icon{
+    margin-right: 4px;
+    color: $color-text-secondary;
+  }
+}
+
+.spot__comments{
+  border-top: 1px solid $color-border;
+
+  &:empty{
+    border: none;
+  }
+}
+
+
+
+
+

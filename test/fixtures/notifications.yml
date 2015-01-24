@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  recipient_id: 
+  sender_id: 
+  type: 1
+  status: 1
+  reference_id: 1
+  pubdate: 2015-01-20 06:54:04
+
+two:
+  recipient_id: 
+  sender_id: 
+  type: 1
+  status: 1
+  reference_id: 1
+  pubdate: 2015-01-20 06:54:04

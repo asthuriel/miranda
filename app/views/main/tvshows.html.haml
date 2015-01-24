@@ -1,0 +1,29 @@
+- content_for :scripts do
+  = javascript_include_tag 'tvshows'
+
+- content_for :navbar_content do
+  #nav-content-main
+    #nav-content-standard
+      .nav__controls.nav__controls--right
+        %a#nav-search.nav__control{href: "#"}
+          %span.icon.icon-search
+      .nav__content.nav__content--left
+        %h2.nav__title Popular Tv Shows
+    #nav-content-search.hidden
+
+  #nav-content-navigation.hidden
+    .nav__controls.nav__controls--left
+      %a#nav-back-return.nav__control{href: "#"}
+        %span.icon.icon-back
+    .nav__content.nav__content--right
+      %h2.nav__title#nav-title
+
+= render "shared/subnav"
+
+.content
+  #tvshow-info-popup.mfp-hide.modal
+  .nav-slider
+    #tvshows-collection
+    #seasons-collection
+    #episodes-collection
+

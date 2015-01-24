@@ -1,0 +1,30 @@
+- content_for :scripts do
+  = javascript_include_tag 'tag_along_add'
+
+- content_for :navbar_content do
+  #nav-content-standard
+    .nav__controls.nav__controls--left
+      = link_to tag_along_path, class: 'nav__control' do
+        %span.icon.icon-back
+    .nav__controls.nav__controls--right
+      %a#nav-search.nav__control{href: "#"}
+        %span.icon.icon-search
+    .nav__content
+      %h2.nav__title Tag Along Suggestions
+  #nav-content-search.hidden
+
+.content.content--nosub
+  .content__panel
+    %h2.content__title Tag along with some friends!
+    - if not @known_users.empty?
+      %p This awesome guys are already using Flixpot, and you might know some of them! Tag along to share the fun!
+    - else
+      %p We currently have no suggestions for you. Try searching for some people to tag along with!
+    .hidden
+      = hidden_field :known_users, :ids, value: @known_users.join(",")
+      = hidden_field :user, :id, value: current_user.id
+  #users.users-list
+  .form-group--refactor.text-center
+    = link_to root_path, class: 'btn btn--default btn--big' do
+      Done!
+

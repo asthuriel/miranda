@@ -1,0 +1,57 @@
+%nav#subnav.subnav{class: @subnav_extra}
+  .container.container--nav
+    #js-subnav-content
+      %ul.subnav__items
+        %li.subnav__item>
+          = link_to root_path, class: 'subnav__link' + ((controller_name == 'main' and action_name == 'index') ? ' subnav__link--active' : '') do
+            %span.icon.icon-item-list
+            %span.text
+              Activity
+        %li.subnav__item>
+          = link_to movies_path, class: 'subnav__link' + ((controller_name == 'main' and action_name == 'movies') ? ' subnav__link--active' : '') do
+            %span.icon.icon--small-fix.icon-film2
+            %span.text
+              Movies
+        %li.subnav__item>
+          = link_to tvshows_path, class: 'subnav__link' + ((controller_name == 'main' and action_name == 'tvshows') ? ' subnav__link--active' : '') do
+            %span.icon.icon--small-fix.icon-tv
+            %span.text
+              Tv Shows
+        %li.subnav__item>
+          = link_to notifications_path, class: 'subnav__link' + ((controller_name == 'main' and action_name == 'notifications') ? ' subnav__link--active' : '') do
+            - @new_notif_count = new_notif_count
+            %span#notifications-icon.icon{class: (@new_notif_count > 0) ? 'icon-notifications-on' : 'icon-notifications-none'}
+            %span#unread-notifications
+              - if @new_notif_count > 0
+                %span.notification-blurb
+                  - if @new_notif_count > 99
+                    +99
+                  - else
+                    = @new_notif_count
+            %span.text
+              Notifications
+        %li.subnav__item>
+          = link_to tag_along_path, class: 'subnav__link' + ((controller_name == 'tag_along' and action_name == 'index') ? ' subnav__link--active' : '') do
+            %span.icon.icon-people
+            %span.text
+              Tag Along
+        %li.subnav__item>
+          %a.subnav__link.subnav__link--submenu.js-submenu-link{href: "#"}
+            %span.icon.icon--small-fix.icon-more-v
+            %span.text
+              More
+          .submenu.hidden
+            .submenu__item
+              = link_to logout_path, :method => :delete, class: 'submenu__link' do
+                /destroy_user_session_path
+                %span.icon.icon-exit
+                %span.text
+                  Log Out
+      / = link_to logout_path, :method => :delete, class: 'subnav__link' do
+      /   /destroy_user_session_path
+      /   %span.icon.icon--small-fix.icon-exit
+      /   %span.text
+      /     Exit
+
+
+

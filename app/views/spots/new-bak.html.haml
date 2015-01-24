@@ -1,0 +1,35 @@
+- content_for :scripts do
+  = javascript_include_tag 'spots_new'
+
+- content_for :navbar_content do
+  .nav__controls.nav__controls--left
+    %a#nav-back.nav__control{href: "#"}
+      %span.icon.icon-back
+  .nav__controls.nav__controls--right
+    %a#nav-done.nav__control{href: "#"}
+      %span.icon.icon-done
+  .nav__content
+    %h2.nav__title= @media_item_title
+
+.content.content--full
+  = form_for :spot, url: "#", html:{id: "spot-form", class: "form"} do |f|
+    = f.hidden_field :tmdb_id, value: @tmdb_id
+    = f.hidden_field :user_id, value: current_user.id
+    = f.hidden_field :veredict, value: 0
+    - placeholder = ((@category == 0) ? 'So, how was the movie?' : 'Hey! How was the episode?')
+    = f.text_area :review, placeholder: placeholder, class: 'textarea textarea--spot'
+
+    = hidden_field_tag :category, @category
+    - if @category == 2
+      = hidden_field_tag :series_id, @series_id
+      = hidden_field_tag :season_number, @season_number
+      = hidden_field_tag :episode_number, @episode_number
+
+.action-bar-wrapper
+  #action-bar.action-bar
+    .action__center
+      %a#btn-thumbs-up.action__button.action__button--inline.action__button--wide{href: "#"}>
+        %span.icon.icon-thumbs-up-black
+      %a#btn-thumbs-down.action__button.action__button--inline.action__button--wide{href: "#"}
+        %span.icon.icon-thumbs-down-black
+

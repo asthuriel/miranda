@@ -1,0 +1,15 @@
+- content_for :scripts do
+  = javascript_include_tag 'tag_along_index'
+
+- content_for :navbar_content do
+  .nav__controls.nav__controls--right
+    = link_to tag_along_add_path, class: 'nav__control' do
+      %span.icon.icon-group-add
+  .nav__content.nav__content--left
+    %h2.nav__title My Tag Along List
+
+= render "shared/subnav"
+.content
+  .hidden
+    = hidden_field :user, :id, value: current_user.id
+  #users.users

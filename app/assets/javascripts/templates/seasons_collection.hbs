@@ -1,0 +1,21 @@
+<div class="list-item list-item--bordered list-item--hoverable">
+  <div class="list-item__left-float no-padding">
+    {{#if poster_path}}
+      <img width="56" height="84" alt="{{show_name}} Season {{season_number}}" class="img" src="http://image.tmdb.org/t/p/w92/{{poster_path}}" />
+    {{else}}
+      <img width="56" height="84" alt="{{show_name}} Season {{season_number}}" class="img" src="/assets/movie-placeholder.png" />
+    {{/if}}
+  </div>
+  <div class="list-item__header list-item__header--alternate">
+    <h3 class="title-item title-item--vcenter">
+      Season {{season_number}}
+      <span class="subtext">
+        {{#if air_date}}
+          - {{yearOfDate air_date}}
+        {{else}}
+          - (no date available)
+        {{/if}}
+      </span>
+    </h3>
+  </div>
+</div>

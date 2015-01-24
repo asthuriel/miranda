@@ -1,0 +1,51 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ * require_tree .
+ * require_self
+ *= require magnific-popup
+ *= require sweet-alert
+ *= require slick
+ *= require select2
+ */
+
+@import "fonts/flixpot_icons";
+
+@import "core/mixins";
+
+@import "settings/settings";
+@import "settings/colors";
+@import "settings/heights";
+@import "settings/media-queries";
+@import "settings/typography";
+
+@import "core/helpers";
+@import "core/base";
+@import "core/base-elements";
+@import "core/forms";
+
+@import "modules/body";
+@import "modules/content";
+@import "modules/images";
+@import "modules/buttons";
+@import "modules/nav";
+@import "modules/action";
+@import "modules/spot";
+@import "modules/modal";
+@import "modules/search-input";
+@import "modules/landing";
+@import "modules/icons";
+@import "modules/pending";
+@import "modules/select2";
+
+@import "modules/lists";
+@import "modules/veredict-icon";

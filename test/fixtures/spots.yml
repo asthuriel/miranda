@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  media_item_id: 
+  review: MyText
+  veredict: 1
+
+two:
+  user_id: 
+  media_item_id: 
+  review: MyText
+  veredict: 1

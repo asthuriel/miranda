@@ -1,0 +1,54 @@
+.landing{
+  padding-top: 2.7em;
+  padding-bottom: 2.7em;
+}
+
+.landing__image{
+  width: 75%;
+  max-width: 300px;
+  max-height: 300px;
+}
+
+.landing__title{
+  font-size: 40px;
+  // @extend .alpha;
+  color: $color-title-secondary;
+  font-weight: $font-weight-light;
+  margin-top: 10px;
+}
+
+.landing__welcome{
+  margin-top: 1em;
+  font-weight: $font-weight-normal;
+}
+
+.landing__button{
+  margin-top: 2.5em;
+}
+
+.landing__terms{
+  margin-top: 3em;
+  p{
+    @extend .small;
+  }
+}
+
+@media #{$more-than-content-max}{
+  .landing__title{
+    font-size: 68px;
+    font-weight: $font-weight-light;
+  }
+
+  .landing__welcome{
+    p{
+      font-size: 22px;
+      font-weight: $font-weight-light;
+    }
+  }
+
+  .landing__terms{
+    p{
+      font-size: 14px;
+    }
+  }
+}

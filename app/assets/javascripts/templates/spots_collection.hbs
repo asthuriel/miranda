@@ -1,0 +1,61 @@
+<div class="list-item list-item--hoverable list-item--bordered">
+  <div class="list-item__left-float">
+    <img class="js-user-link img-avatar img-avatar--hoverable" src="{{ user.avatar_url }}" width="42" height="42" alt="{{ user.full_name }}" />
+  </div>
+
+  <div class="list-item__right-float">
+    <div class="veredict-icon veredict-icon--{{ veredictToText veredict 'class' }}">
+      <span class="icon icon-thumbs-{{ veredictToText veredict 'icon' }}"></span>
+    </div>
+  </div>
+
+  <div class="list-item__header list-item_block--short">
+    <p>
+      <strong class="js-user-link text--hoverable">
+        {{ user.full_name }}
+      </strong>
+      <span class="subtext">
+        {{ relativeDate pubdate }}
+      </span>
+    </p>
+    <h3 class="title-item">
+      {{ mediaItemTitle media_item }}
+    </h3>
+  </div>
+
+  {{#if review}}
+    <div class="list-item__content list-item_block--short">
+      <p class="clamp-3">{{{ review }}}</p>
+    </div>
+  {{/if }}
+
+  <div class='list-item__footer text-right'>
+
+    <a class='btn-spot js-thumb-up' href='#'>
+      <span class='text'>
+        {{ formatCount positive_veredicts_count }}
+      </span>
+      <span class='icon icon-thumbs-up-black'></span>
+    </a><a class='btn-spot js-thumb-down' href='#'>
+      <span class='text'>
+        {{ formatCount negative_veredicts_count }}
+      </span>
+      <span class='icon icon-thumbs-down-black'></span>
+    </a><a class='btn-spot js-comment' href='#'>
+      <span class='text'>
+        {{ formatCount comments_count }}
+      </span>
+      <span class='icon icon-comment-full'></span>
+    </a>
+
+  </div>
+
+  <!--<div class="list-item__well">
+    <p class="zeta clamp-2">
+      <strong>
+        Maya:
+      </strong>
+      Psssh! Los enanos tenían la estatura correcta. Cualquier otra sugerencia evidencia enanismo, que es racismo pero de enanos!
+    </p>
+  </div>-->
+</div>
