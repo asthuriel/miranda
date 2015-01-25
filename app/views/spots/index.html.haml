@@ -41,7 +41,7 @@
           = form_for :tag_along, url: "#", html:{id: "tag-alongs-form", class: "form"} do |f|
             = f.hidden_field :tagger_id, value: current_user.id
             = f.hidden_field :tagged_id, value: @user.id
-          = hidden_field :tag, :status, value: @user.tagger_id
+          = hidden_field :tag, :id, value: @user.tag_id
         - if current_user.id != @user.id
           .padding-top-quarter
             %a#untag-along-btn{href: '#', class: 'btn btn--flat btn--tag btn--outline'}

@@ -14,7 +14,7 @@ $(()->
     spots.veredictUpdateEnabled = true
     spots.fixedOptions.current_user_id = $('#current_user_id').val()
 
-  if $('#tag_status').val() != ''
+  if $('#tag_id').val() != ''
     $('#untag-along-btn').show().css('display', 'inline-block')
   else
     $('#tag-along-btn').show().css('display', 'inline-block')
@@ -22,9 +22,17 @@ $(()->
   tagAlong = (callback) ->
     tagAlongs.add $('#tag-alongs-form'), (success) ->
       if success
+        $('#tag_id').val(tagAlongs.item.id)
         callback()
       else
-        console.log 'pava' #REFACTOR!!!
+        console.log tagAlongs.errors #REFACTOR!!!
+
+  untagAlong = (callback) ->
+    tagAlongs.destroy $('#tag_id').val(), (success) ->
+      if success
+        callback()
+      else
+        console.log tagAlongs.errors #REFACTOR!!!
 
   $('#tag-along-btn').click () ->
     tagAlong () ->
@@ -41,7 +49,7 @@ $(()->
       confirmButtonText: "I'm sure!"
       closeOnConfirm: true
     , () ->
-      tagAlong () ->
+      untagAlong () ->
         $('#untag-along-btn').hide()
         $('#tag-along-btn').show().css('display', 'inline-block')
 
