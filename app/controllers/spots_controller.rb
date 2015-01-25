@@ -39,7 +39,8 @@ class SpotsController < ApplicationController
     if params[:username]
       @user = User.where('lower(users.username) = ?', params[:username].downcase)
       if user_signed_in?
-        @user = @user.select('users.*, t.tagger_id').group('users.id')
+        #.group('users.id')
+        @user = @user.select('users.*, t.tagger_id')
           .joins('left outer join tag_alongs as t on tagged_id = users.id and tagger_id = '+current_user.id.to_s)
       end
       @user = @user.first

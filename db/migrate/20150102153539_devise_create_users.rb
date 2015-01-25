@@ -38,6 +38,9 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.text :bio, null: false, default: ""
       t.string :role, null: false, default: "user"
 
+      t.string :provider, null: false, default: ""
+      t.string :google_id, null: false, default: ""
+
       t.timestamps
     end
 

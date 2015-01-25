@@ -3,14 +3,14 @@ class Api::SpotsController < ApplicationController
     #spots = Spot.all.includes(:user).includes(:media_item).order(pubdate: :desc).limit(20)
     limit = 25
 
-    spots = Spot.includes([:user, {media_item: :parent}]).group('spots.id').order(pubdate: :desc).limit(limit)
+    spots = Spot.includes([:user, {media_item: :parent}]).order(pubdate: :desc).limit(limit)
       .joins('left outer join (select c2.spot_id as spot_id, count(c2.id) as count from comments as c2 group by c2.spot_id) as c on c.spot_id = spots.id')
       .joins('left outer join (select pv2.spot_id as spot_id, count(pv2.id) as count from veredicts as pv2 where pv2.veredict = 1 group by pv2.spot_id) as pv on pv.spot_id = spots.id')
       .joins('left outer join (select nv2.spot_id as spot_id, count(nv2.id) as count from veredicts as nv2 where nv2.veredict = -1 group by nv2.spot_id) as nv on nv.spot_id = spots.id')
 
     if params[:current_user_id]
       spots = spots.select('spots.*, c.count as comments_count, pv.count as positive_veredicts_count, nv.count as negative_veredicts_count, uv.user_veredict as user_veredict')
-        .joins('left outer join (select uv2.spot_id as spot_id, uv2.veredict as user_veredict from veredicts as uv2 where uv2.user_id = ' + params[:current_user_id] + ' group by uv2.spot_id) as uv on uv.spot_id = spots.id')
+        .joins('left outer join (select uv2.spot_id as spot_id, uv2.veredict as user_veredict from veredicts as uv2 where uv2.user_id = ' + params[:current_user_id] + ' group by uv2.spot_id, uv2.veredict) as uv on uv.spot_id = spots.id')
     else
       spots = spots.select('spots.*, c.count as comments_count, pv.count as positive_veredicts_count, nv.count as negative_veredicts_count, null as user_veredict')
     end

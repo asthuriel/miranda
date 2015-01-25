@@ -5,6 +5,7 @@ class CreateSpots < ActiveRecord::Migration
       t.references :media_item, index: true
       t.text :review
       t.integer :veredict
+      t.datetime :pubdate, index: true
 
       t.timestamps null: false
     end

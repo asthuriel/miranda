@@ -14,10 +14,10 @@ class Api::UsersController < ApplicationController
       users = users.where('users.id != ?', params[:exclude_user])
     end
     if params[:in_list]
-      users = users.where('users.id in (?)', params[:in_list])
+      users = users.where('users.id in (?)', params[:in_list].map{ |i| i.to_i })
     end
     if params[:not_in_list]
-      users = users.where('users.id not in (?)', params[:not_in_list])
+      users = users.where('users.id not in (?)', params[:not_in_list].map{ |i| i.to_i })
     end
     if params[:not_tagged_by]
       users = users.where('users.id not in (select t.tagged_id from tag_alongs as t where t.tagger_id = ?)', params[:not_tagged_by])

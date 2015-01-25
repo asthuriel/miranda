@@ -9,8 +9,16 @@ class CreateMediaItems < ActiveRecord::Migration
       t.integer :tmdb_id, index: true
       t.string :backdrop_path, null: false, default: ""
       t.string :poster_path, null: false, default: ""
+      t.integer :season_number
+      t.integer :episode_number
+      t.integer :category, null: false, default: 0
+      t.references :parent, index: true
 
       t.timestamps null: false
     end
+
+    add_foreign_key :media_items, :media_items, column: :parent_id, primary_key: :id
   end
 end
+
+

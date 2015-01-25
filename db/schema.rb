@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150123124534) do
+ActiveRecord::Schema.define(version: 20150120115404) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
@@ -35,12 +35,12 @@ ActiveRecord::Schema.define(version: 20150123124534) do
     t.integer  "tmdb_id"
     t.string   "backdrop_path",  default: "", null: false
     t.string   "poster_path",    default: "", null: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.integer  "parent_id"
-    t.integer  "category",       default: 0,  null: false
     t.integer  "season_number"
     t.integer  "episode_number"
+    t.integer  "category",       default: 0,  null: false
+    t.integer  "parent_id"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   add_index "media_items", ["parent_id"], name: "index_media_items_on_parent_id"
@@ -92,12 +92,13 @@ ActiveRecord::Schema.define(version: 20150123124534) do
     t.integer  "media_item_id"
     t.text     "review"
     t.integer  "veredict"
+    t.datetime "pubdate"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.datetime "pubdate"
   end
 
   add_index "spots", ["media_item_id"], name: "index_spots_on_media_item_id"
+  add_index "spots", ["pubdate"], name: "index_spots_on_pubdate"
   add_index "spots", ["user_id"], name: "index_spots_on_user_id"
 
   create_table "tag_alongs", force: :cascade do |t|
@@ -127,10 +128,10 @@ ActiveRecord::Schema.define(version: 20150123124534) do
     t.string   "avatar_url",             default: "",     null: false
     t.text     "bio",                    default: "",     null: false
     t.string   "role",                   default: "user", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "provider",               default: "",     null: false
     t.string   "google_id",              default: "",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
