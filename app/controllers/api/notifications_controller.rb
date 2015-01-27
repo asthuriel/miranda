@@ -17,7 +17,7 @@ class Api::NotificationsController < ApplicationController
       notif_array = []
       reference = nil
       notifications.each do |notif|
-        if [1, 2, 3].include? notif.category
+        if [1, 2, 3, 4].include? notif.category
           reference = Spot.where(id: notif.reference_id).includes([{media_item: :parent}]).first
           reference = reference.as_json(
             only: :media_item,

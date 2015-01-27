@@ -26,21 +26,25 @@
       %a#btn-thumbs-down{href: "#"}
         -#.action__button.action__button--inline.action__button--wide
         %span.icon.icon-thumbs-down-black
-    .box
+    .box.padding-bottom-none
       .form-group
         = f.label :review do
           Your Review (Optional)
         = f.text_area :review, placeholder: placeholder, class: 'textarea textarea--autosize textarea--big js-autosize'
+    .hidden
+      = hidden_field_tag :category, @category
+      - if @category == 2
+        = hidden_field_tag :series_id, @series_id
+        = hidden_field_tag :season_number, @season_number
+        = hidden_field_tag :episode_number, @episode_number
+  - if @tag_alongs.length > 0
+    .box
       .form-group
         = label_tag do
-          Recommend to Friends! (Not working yet)
+          Recommend to Friends!
         = select_tag "people", options_from_collection_for_select(@tag_alongs, 'tagged_id', 'tagged_full_name'), multiple: true, class: 'js-select2 hidden'
 
-    = hidden_field_tag :category, @category
-    - if @category == 2
-      = hidden_field_tag :series_id, @series_id
-      = hidden_field_tag :season_number, @season_number
-      = hidden_field_tag :episode_number, @episode_number
+
 
 / .action-bar-wrapper
 /   #action-bar.action-bar

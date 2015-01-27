@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     resources :veredicts, only: [:index, :create]
     resources :tag_alongs, only: [:create, :destroy]
     resources :notifications, only: [:index, :update]
+    resources :recommendations, only: [:index, :create]
 
     get '/validation/username_exists' => 'validation#username_exists'
   end

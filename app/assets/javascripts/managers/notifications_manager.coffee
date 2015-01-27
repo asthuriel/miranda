@@ -30,6 +30,8 @@ class Flixpot.Managers.Notifications extends SimPL.Manager
       window.location.href = '/' + evt.data.item.recipient.username + '/spots/' + evt.data.item.reference_id + '#comments'
     else if _.contains([2, 3], evt.data.item.category)
       window.location.href = '/' + evt.data.item.recipient.username + '/spots/' + evt.data.item.reference_id + '#veredict-lists'
+    else if evt.data.item.category is 4
+      window.location.href = '/' + evt.data.item.recipient.username + '/spots/' + evt.data.item.reference_id
 
   afterShow: (item) =>
     if (item.status is 0)
@@ -76,6 +78,11 @@ class Flixpot.Managers.Notifications extends SimPL.Manager
       desc += _sh.tagify(@getMediaItemTitle(item.reference.media_item), 'strong')
       icon = 'thumbs-down-black'
       color = 'negative'
+    else if item.category is 4
+      desc += ' recommended '
+      desc += _sh.tagify(@getMediaItemTitle(item.reference.media_item), 'strong')
+      desc += ' to you'
+      icon = 'eye'
     desc = desc.replace(/#{icon}/g, icon).replace(/#{color}/g, color)
     desc += '.'
     item.desc = desc

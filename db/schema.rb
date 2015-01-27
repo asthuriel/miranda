@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150120115404) do
+ActiveRecord::Schema.define(version: 20150127033817) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
@@ -76,6 +76,21 @@ ActiveRecord::Schema.define(version: 20150120115404) do
 
   add_index "notifications", ["recipient_id"], name: "index_notifications_on_recipient_id"
   add_index "notifications", ["sender_id"], name: "index_notifications_on_sender_id"
+
+  create_table "recommendations", force: :cascade do |t|
+    t.integer  "recipient_id"
+    t.integer  "sender_id"
+    t.integer  "media_item_id"
+    t.datetime "pubdate"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "spot_id"
+  end
+
+  add_index "recommendations", ["media_item_id"], name: "index_recommendations_on_media_item_id"
+  add_index "recommendations", ["recipient_id"], name: "index_recommendations_on_recipient_id"
+  add_index "recommendations", ["sender_id"], name: "index_recommendations_on_sender_id"
+  add_index "recommendations", ["spot_id"], name: "index_recommendations_on_spot_id"
 
   create_table "sessions", force: :cascade do |t|
     t.string   "session_id", null: false

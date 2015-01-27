@@ -65,6 +65,11 @@ class User < ActiveRecord::Base
     return known_users.uniq
   end
 
+  def serializable_hash(options={})
+    options[:only] ||= [:id, :username, :full_name, :bio, :avatar_url]
+    super(options)
+  end
+
   private
     def before_save
       #coder = HTMLEntities.new

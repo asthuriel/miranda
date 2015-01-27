@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  recipient_id: 
+  sender_id: 
+  media_item_id: 
+  pubdate: 2015-01-26 11:35:13
+
+two:
+  recipient_id: 
+  sender_id: 
+  media_item_id: 
+  pubdate: 2015-01-26 11:35:13

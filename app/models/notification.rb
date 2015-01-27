@@ -22,6 +22,10 @@ class Notification < ActiveRecord::Base
     return Notification.where(recipient: user, status: 0).length
   end
 
+  # def as_json(options={})
+  #   super(only: [:recipient, :sender], include: [:addresses])
+  # end
+
   private
     def set_pubdate
       if new_record?
