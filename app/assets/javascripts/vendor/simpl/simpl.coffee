@@ -61,6 +61,7 @@ class SimPL.Manager
   $collectionFetchEl: null
   collectionEmptyTemplate: ''
   collectionContainer: ''
+  fetchingCollection: false
   errorsTemplate: ''
   errorContainer: ''
   collection: []
@@ -168,57 +169,61 @@ class SimPL.Manager
       callback()
 
   fetchElements: (callback, options, extra) ->
-    if @collectionFetchTemplate
-      if not @$collectionFetchEl
-        @$collectionFetchEl = $(SimPL.Config.applyTemplate(@collectionFetchTemplate, {}))
-      container = @tempContainer || @collectionContainer
-      $(container).append(@$collectionFetchEl)
+    if not @fetchingCollection
+      @fetchingCollection = true
 
-    if (@tempEndpoint)
-      endpoint = @tempEndpoint
-      @tempEndpoint = null
-    else
-      endpoint = @endpoint
-
-    if extra?
-      endpoint += '/' + extra #REFACTOR
-
-    paramString = '?'
-    fixedParamList = _.keys(@fixedOptions)
-
-    if @paginated
-      @currentPage++;
-      paramString += @pageParamName + '=' + @currentPage + '&'
-
-    if not fixedParamList.blank()
-      for param in fixedParamList
-        paramString += param + '=' + @fixedOptions[param] + '&'
-
-    if options?
-      paramList = _.keys(options) #Object.keys(options)
-      if not paramList.blank()
-        for param in paramList
-          if options[param].constructor isnt Array
-            paramString += param + '=' + options[param] + '&'
-          else
-            for item in options[param]
-              paramString += param + '[]=' + item + '&'
-          #paramString += (if paramString is '?' then '' else '&') + param + '=' + options[param]
-
-    if paramString isnt '?'
-      endpoint += paramString.substring(0, paramString.length - 1)
-
-    $.getJSON endpoint, (data) =>
-      @collectionNew = if @jsonCollectionContainer is '' then @mapCollection(data) else @mapCollection(data[@jsonCollectionContainer])
       if @collectionFetchTemplate
-        @$collectionFetchEl.detach()
+        if not @$collectionFetchEl
+          @$collectionFetchEl = $(SimPL.Config.applyTemplate(@collectionFetchTemplate, {}))
+        container = @tempContainer || @collectionContainer
+        if container
+          $(container).append(@$collectionFetchEl)
 
-      if @paginated and @currentPage > 1 and @collectionNew.blank()
-        @showingAll = true
+      if (@tempEndpoint)
+        endpoint = @tempEndpoint
+        @tempEndpoint = null
       else
-        @collection = @collection.concat(@collectionNew)
-        @afterFetch(@collection)
-        callback()
+        endpoint = @endpoint
+
+      if extra?
+        endpoint += '/' + extra #REFACTOR
+
+      paramString = '?'
+      fixedParamList = _.keys(@fixedOptions)
+
+      if @paginated
+        @currentPage++;
+        paramString += @pageParamName + '=' + @currentPage + '&'
+
+      if not fixedParamList.blank()
+        for param in fixedParamList
+          paramString += param + '=' + @fixedOptions[param] + '&'
+
+      if options?
+        paramList = _.keys(options) #Object.keys(options)
+        if not paramList.blank()
+          for param in paramList
+            if options[param].constructor isnt Array
+              paramString += param + '=' + options[param] + '&'
+            else
+              for item in options[param]
+                paramString += param + '[]=' + item + '&'
+            #paramString += (if paramString is '?' then '' else '&') + param + '=' + options[param]
+
+      if paramString isnt '?'
+        endpoint += paramString.substring(0, paramString.length - 1)
+
+      $.getJSON endpoint, (data) =>
+        @collectionNew = if @jsonCollectionContainer is '' then @mapCollection(data) else @mapCollection(data[@jsonCollectionContainer])
+        if @collectionFetchTemplate
+          @$collectionFetchEl.detach()
+        @fetchingCollection = false
+        if @paginated and @currentPage > 1 and @collectionNew.blank()
+          @showingAll = true
+        else
+          @collection = @collection.concat(@collectionNew)
+          @afterFetch(@collection)
+          callback()
 
   fetch: (callback, options, extra) ->
     @collection = []
