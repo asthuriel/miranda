@@ -5,8 +5,8 @@ class MediaItem < ActiveRecord::Base
   belongs_to :parent, :class_name => "MediaItem"
   has_many :media_items, dependent: :delete_all, foreign_key: :parent_id #:class_name => "MediaItem"
 
-  # def serializable_hash(options={})
-  #   options = {include: :parent}
-  #   super(options)
-  # end
+  def serializable_hash(options={})
+    options[:except] ||= [:overview, :created_at, :updated_at]
+    super(options)
+  end
 end

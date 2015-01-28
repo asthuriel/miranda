@@ -2,6 +2,7 @@ class Flixpot.Managers.Comments extends SimPL.Manager
   endpoint: '/api/comments'
   collectionItemTemplate: 'comments_collection'
   #collectionEmptyTemplate: 'comments_empty'
+  collectionFetchTemplate: 'fetch'
   collectionContainer: '#comments'
   onAdd: 'append'
 

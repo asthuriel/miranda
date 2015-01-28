@@ -1,6 +1,7 @@
 class Flixpot.Managers.TvShows extends SimPL.Manager
   endpoint: 'http://api.themoviedb.org/3/tv'
   collectionItemTemplate: 'tvshows_collection'
+  collectionFetchTemplate: 'fetch'
   itemTemplate: 'tvshows_item'
   itemContainer: '#tvshow-info-popup'
   collectionContainer: '#tvshows-collection'

@@ -1,6 +1,7 @@
 class Flixpot.Managers.Movies extends SimPL.Manager
   endpoint: 'http://api.themoviedb.org/3/movie'
   collectionItemTemplate: 'movies_collection'
+  collectionFetchTemplate: 'fetch'
   itemTemplate: 'movies_item'
   collectionContainer: '#movies-collection'
   itemContainer: '#movie-info-popup'

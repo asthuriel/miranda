@@ -1,6 +1,7 @@
 class Flixpot.Managers.Notifications extends SimPL.Manager
   endpoint: '/api/notifications'
   collectionItemTemplate: 'notifications_collection'
+  collectionFetchTemplate: 'fetch'
   collectionContainer: '#notifications'
 
   controlData:

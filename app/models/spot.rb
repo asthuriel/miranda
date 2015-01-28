@@ -9,6 +9,11 @@ class Spot < ActiveRecord::Base
   before_save :before_save
   after_initialize :set_pubdate
 
+  def serializable_hash(options={})
+    options[:except] ||= [:created_at, :updated_at]
+    super(options)
+  end
+
   private
     def set_pubdate
       if new_record?

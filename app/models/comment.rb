@@ -12,6 +12,11 @@ class Comment < ActiveRecord::Base
 
   after_save :after_save
 
+  def serializable_hash(options={})
+    options[:except] ||= [:created_at, :updated_at]
+    super(options)
+  end
+
   private
     def set_pubdate
       if new_record?

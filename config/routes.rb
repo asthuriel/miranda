@@ -23,9 +23,9 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
-    resources :users, only: [:index, :show]
-    resources :spots, only: [:index, :show, :create]
-    resources :comments, only: [:index, :show, :create]
+    resources :users, only: [:index]
+    resources :spots, only: [:index, :create]
+    resources :comments, only: [:index, :create]
     resources :veredicts, only: [:index, :create]
     resources :tag_alongs, only: [:create, :destroy]
     resources :notifications, only: [:index, :update]
@@ -47,6 +47,9 @@ Rails.application.routes.draw do
   get '/tag_along' => 'tag_along#index', as: :tag_along
 
   get '/movies' => 'main#movies', as: :movies
+
+  get '/test' => 'main#test', as: :test
+
   get '/tvshows' => 'main#tvshows', as: :tvshows
   get '/notifications' => 'main#notifications', as: :notifications
 

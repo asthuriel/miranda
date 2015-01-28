@@ -1,7 +1,7 @@
 class Api::RecommendationsController < ApplicationController
   def index
     limit = 20
-    recommendations = Recommendation.includes([:recipient, :sender, {media_item: :parent}]).order(pubdate: :asc)
+    recommendations = Recommendation.includes([:recipient, :sender, {media_item: :parent}]).order(pubdate: :asc).limit(limit)
 
     if params[:recipient_id]
       recommendations = recommendations.where(recipient_id: params[:recipient_id])
@@ -19,47 +19,13 @@ class Api::RecommendationsController < ApplicationController
       recommendations = recommendations.offset(offset)
     end
 
-    resp = {
-      meta: {
-         resource_name: 'recommendations',
-         count: recommendations.length
-       },
-       data: recommendations
-    }
-
-    # resp = {
-    #   meta: {
-    #     resource_name: 'recommendations',
-    #     count: recommendations.length
-    #   },
-    #   data: recommendations.as_json({
-    #     only: [:recipient_id, :sender_id, :media_item_id, :pubdate, :recipient, :sender, :media_item],
-    #     include: [
-    #       {recipient: {
-    #         only: [:id, :username, :full_name, :avatar_url]
-    #       }},
-    #       {sender: {
-    #         only: [:id, :username, :full_name, :avatar_url]
-    #       }},
-    #       {media_item: {
-    #         only: [:id, :category, :parent_id, :title, :release_date, :tmdb_id, :backdrop_path, :poster_path, :season_number, :episode_number],
-    #         include: [
-    #           {parent: {
-    #             only: [:id, :category, :parent_id, :title, :release_date, :tmdb_id, :backdrop_path, :poster_path, :season_number, :episode_number]
-    #           }}
-    #         ]
-    #       }}
-    #   ]})
-    # }
+    data = recommendations.as_json(include: [:recipient, :sender, {media_item: {include: :parent}}, :spot])
+    resp = Base.list_response('recommendations', recommendations.length, data)
     render json: resp
   end
 
   def create
-    resp = {
-      success: false,
-      data: '',
-      errors: []
-    }
+    resp = Base.transaction_response('recommendations')
     if not user_signed_in?
       resp[:errors].push("You need to be logged in to use this API endopint.")
     else
@@ -75,10 +41,7 @@ class Api::RecommendationsController < ApplicationController
         end
       end
     end
-    render plain: resp.to_json
-  end
-
-  def destroy
+    render json: resp
   end
 
   private

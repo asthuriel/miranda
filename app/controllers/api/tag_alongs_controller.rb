@@ -1,10 +1,6 @@
 class Api::TagAlongsController < ApplicationController
   def create
-    resp = {
-      success: false,
-      data: '',
-      errors: []
-    }
+    resp = Base.transaction_response('tag_alongs')
     if not user_signed_in?
       resp[:errors].push("You need to be logged in to use this API endopint.")
     else
@@ -25,15 +21,11 @@ class Api::TagAlongsController < ApplicationController
         end
       end
     end
-    render plain: resp.to_json
+    render json: resp
   end
 
   def destroy
-    resp = {
-      success: false,
-      data: '',
-      errors: []
-    }
+    resp = Base.transaction_response('tag_alongs')
     if not user_signed_in?
       resp[:errors].push("You need to be logged in to use this API endopint")
     else
@@ -52,7 +44,7 @@ class Api::TagAlongsController < ApplicationController
         resp[:errors].push("The selected tag along is forbidden or doesn't exist.")
       end
     end
-    render plain: resp.to_json
+    render json: resp
   end
 
   private

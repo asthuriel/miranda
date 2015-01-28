@@ -14,8 +14,8 @@ class Recommendation < ActiveRecord::Base
   after_save :after_save
 
   def serializable_hash(options={})
-    super(only: [:id, :recipient_id, :sender_id, :media_item_id, :pubdate, :recipient, :sender, :media_item, :spot],
-          include: [:recipient, :sender, :media_item, :spot])
+    options[:except] ||= [:created_at, :updated_at]
+    super(options)
   end
 
   private

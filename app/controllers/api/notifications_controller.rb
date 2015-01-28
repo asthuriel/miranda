@@ -3,10 +3,8 @@ class Api::NotificationsController < ApplicationController
     limit = 25
 
     if not user_signed_in?
-      resp = {
-        success: false,
-        errors: ['You need to be logged in to use this API endopint']
-      }
+      resp = Base.transaction_response('notifications')
+      resp[:errors].push("You need to be logged in to use this API endopint")
     else
       notifications = Notification.where(recipient_id: current_user.id).includes(:recipient, :sender).order(pubdate: :desc).limit(limit)
       if params[:page]
@@ -21,16 +19,7 @@ class Api::NotificationsController < ApplicationController
           reference = Spot.where(id: notif.reference_id).includes([{media_item: :parent}]).first
           reference = reference.as_json(
             only: :media_item,
-            include: {
-              media_item: {
-                only: [:title, :category, :season_number, :episode_number],
-                include: {
-                  parent: {
-                    only: :title
-                  }
-                }
-              }
-            }
+            include: {media_item: {include: :parent}}
           )
         end
         notif_array.push({
@@ -40,27 +29,17 @@ class Api::NotificationsController < ApplicationController
           status: notif.status,
           reference: reference,
           reference_id: notif.reference_id,
-          sender: notif.sender.as_json(only: [:id, :username, :full_name, :avatar_url]),
-          recipient: notif.recipient.as_json(only: [:id, :username, :full_name, :avatar_url])
+          sender: notif.sender,
+          recipient: notif.recipient
         })
       end
-      resp = {
-        meta: {
-          resource_name: 'notifications',
-          count: notif_array.length
-        },
-        data: notif_array.as_json()
-      }
+      resp = Base.list_response('notifications', notif_array.length, notif_array)
     end
-    render plain: resp.to_json
+    render json: resp
   end
 
   def update
-    resp = {
-      success: false,
-      data: '',
-      errors: []
-    }
+    resp = Base.transaction_response('notifications')
     if not user_signed_in?
       resp[:errors].push("You need to be logged in to use this API endopint")
     else
@@ -80,7 +59,7 @@ class Api::NotificationsController < ApplicationController
         end
       end
     end
-    render plain: resp.to_json
+    render json: resp
   end
 
   private

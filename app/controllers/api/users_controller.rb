@@ -26,26 +26,7 @@ class Api::UsersController < ApplicationController
       users = users.where('users.id in (select t.tagged_id from tag_alongs as t where t.tagger_id = ?)', params[:tagged_by])
     end
 
-    #u = User.select('users.*, t.tagged_id as tagged_id').joins('left outer join (select tagged_id from tag_alongs where tagger_id = 1) as t on t.tagged_id = users.id').group('users.id')
-
-    resp = {
-      meta: {
-        resource_name: 'users',
-        count: users.length
-      },
-      data: users.as_json(only: [:id, :username, :full_name, :bio, :avatar_url, :tag_id])
-    }
-    render plain: resp.to_json()
-  end
-
-  def show
-    user = User.where(id: params[:id])[0]
-    resp = {
-      meta: {
-        resource_name: 'users'
-      },
-      data: user.as_json(only: [:id, :username, :full_name, :bio, :avatar_url])
-    }
-    render plain: resp.to_json
+    resp = Base.list_response('users', users.length, users)
+    render json: resp
   end
 end

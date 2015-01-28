@@ -7,6 +7,11 @@ class Veredict < ActiveRecord::Base
   after_save :after_save
   before_destroy :before_destroy
 
+  def serializable_hash(options={})
+    options[:except] ||= [:created_at, :updated_at]
+    super(options)
+  end
+
   private
     def set_pubdate
       if new_record?

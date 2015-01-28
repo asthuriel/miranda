@@ -1,8 +1,6 @@
 class Api::SpotsController < ApplicationController
   def index
-    #spots = Spot.all.includes(:user).includes(:media_item).order(pubdate: :desc).limit(20)
     limit = 25
-
     spots = Spot.includes([:user, {media_item: :parent}]).order(pubdate: :desc).limit(limit)
       .joins('left outer join (select c2.spot_id as spot_id, count(c2.id) as count from comments as c2 group by c2.spot_id) as c on c.spot_id = spots.id')
       .joins('left outer join (select pv2.spot_id as spot_id, count(pv2.id) as count from veredicts as pv2 where pv2.veredict = 1 group by pv2.spot_id) as pv on pv.spot_id = spots.id')
@@ -29,46 +27,15 @@ class Api::SpotsController < ApplicationController
       spots = spots.offset(offset)
     end
 
-    resp = {
-      meta: {
-        resource_name: 'spots',
-        count: spots.length
-      },
-      data: spots.as_json(include: [
-        {user:
-          {only: [:email, :id, :username, :full_name, :bio, :avatar_url, :tagged_id]}
-        },
-        {media_item:
-          {only: [:id, :title, :release_date, :category, :season_number, :episode_number],
-           include: [
-             {parent:
-               {only: [:id, :title, :release_date]}
-             }
-           ]
-         }
-        }
-      ])
-    }
-    render plain: resp.to_json()
-  end
+    data = spots.as_json(include: [:user, {media_item: {include: :parent}}])
+    resp = Base.list_response('spots', spots.length, data)
 
-  def show
-    spot = Spot.where(id: params[:id])[0]
-    resp = {
-      meta: {
-        resource_name: 'spots'
-      },
-      data: spot
-    }
-    render plain: resp.to_json
+    render json: resp
   end
 
   def create
-    resp = {
-      success: false,
-      data: '',
-      errors: []
-    }
+    resp = Base.transaction_response('spots')
+
     if params[:spot][:tmdb_id] and params[:category]
       tmdb_id = params[:spot][:tmdb_id]
       media_item = MediaItem.where(tmdb_id: tmdb_id, category: params[:category]).first
@@ -99,7 +66,7 @@ class Api::SpotsController < ApplicationController
     else
       resp[:errors].push("Params missing")
     end
-    render plain: resp.to_json
+    render json: resp
   end
 
   private

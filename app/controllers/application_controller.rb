@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   require 'themoviedb'
+  require 'base'
 
   Tmdb::Api.key('300d2fb47e3f5f8d5e569ce27884acdc')
 end

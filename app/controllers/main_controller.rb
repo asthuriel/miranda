@@ -22,4 +22,8 @@ class MainController < ApplicationController
       redirect_to root_path
     end
   end
+
+  def test
+    render :layout => 'test'
+  end
 end

@@ -12,7 +12,6 @@ class ExternalUsersController < ApplicationController
         @username = username + (1+rand(10000)).to_s
         user = User.where('lower(username) = ?', @username).first
       end
-      #render json: @user_info
     end
   end
 

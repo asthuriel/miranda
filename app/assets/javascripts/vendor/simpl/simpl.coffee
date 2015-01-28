@@ -57,6 +57,8 @@ class SimPL.Manager
   itemTemplate: ''
   itemContainer: ''
   collectionItemTemplate: ''
+  collectionFetchTemplate: ''
+  $collectionFetchEl: null
   collectionEmptyTemplate: ''
   collectionContainer: ''
   errorsTemplate: ''
@@ -166,6 +168,12 @@ class SimPL.Manager
       callback()
 
   fetchElements: (callback, options, extra) ->
+    if @collectionFetchTemplate
+      if not @$collectionFetchEl
+        @$collectionFetchEl = $(SimPL.Config.applyTemplate(@collectionFetchTemplate, {}))
+      container = @tempContainer || @collectionContainer
+      $(container).append(@$collectionFetchEl)
+
     if (@tempEndpoint)
       endpoint = @tempEndpoint
       @tempEndpoint = null
@@ -202,6 +210,9 @@ class SimPL.Manager
 
     $.getJSON endpoint, (data) =>
       @collectionNew = if @jsonCollectionContainer is '' then @mapCollection(data) else @mapCollection(data[@jsonCollectionContainer])
+      if @collectionFetchTemplate
+        @$collectionFetchEl.detach()
+
       if @paginated and @currentPage > 1 and @collectionNew.blank()
         @showingAll = true
       else

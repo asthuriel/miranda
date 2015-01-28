@@ -1,6 +1,7 @@
 class Flixpot.Managers.Spots extends SimPL.Manager
   endpoint: '/api/spots'
   collectionItemTemplate: 'spots_collection'
+  collectionFetchTemplate: 'fetch'
   collectionContainer: '#spots'
 
   collectionEvents:
